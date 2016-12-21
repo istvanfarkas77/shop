@@ -1,0 +1,51 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.2.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'maven'
+
+jar {
+    baseName = 'config-server'
+    version = '1.1.0.RELEASE'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().url)
+            pom.version = '1.1.0.RELEASE'
+            pom.artifactId = 'config-server'
+            pom.groupId = 'com.shop'
+        }
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR1'
+    }
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version:'1.4.2.RELEASE'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter', version:'+'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka-server', version:'+'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-config-server', version:'+'
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+	<h1>Book Details</h1>
+
+	<dl class="dl-horizontal">
+		<dt>Id</dt>
+		<dd th:text="${book.id}">number</dd>
+		<dt>Title</dt>
+		<dd th:text="${book.title}">number</dd>
+		<dt>Author</dt>
+		<dd th:text="${book.author}">number</dd>
+		<dt>ISBN</dt>
+		<dd th:text="${book.isbn}">number</dd>
+	</dl>
+
+	<div></div>
+</body>
+</html>

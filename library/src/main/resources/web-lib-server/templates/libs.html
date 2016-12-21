@@ -1,0 +1,44 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+	<h1>Books by title</h1>
+	<div th:if="not ${books}" class="error">
+		No books found containing '<span th:text="${search}">text</span>'.
+		<div style="height: 2cm">&nbsp;</div>
+	</div>
+
+	<div th:if="${books}">
+		<p>
+			Books whose title contains ' <span th:text="${search}">text</span>'
+			are:
+		</p>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Book id</th>
+					<th>Title</th>
+					<th>Author</th>
+					<th>ISBN</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="book : ${books}">
+					<td><a href="book.html"
+						th:href="@{|/books/${book.id}|}"
+						th:text="|${book.title}|">11111111</a></td>
+					<td th:text="${book.author}">Author</td>
+					<td th:text="${book.isbn}">0</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div></div>
+</body>
+</html>

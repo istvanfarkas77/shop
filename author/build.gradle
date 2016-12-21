@@ -1,0 +1,66 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.2.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'maven'
+
+jar {
+    baseName = 'author-service'
+    version = '1.1.0.RELEASE'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().url)
+            pom.version = '1.1.0.RELEASE'
+            pom.artifactId = 'author-service'
+            pom.groupId = 'com.shop'
+        }
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR1'
+    }
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '1.4.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '1.4.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.4.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.4.2.RELEASE'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter', version: '+'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka-server', version: '+'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '+'
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '+'
+    compile group: 'com.netflix.hystrix', name: 'hystrix-javanica', version: '+'
+    compile group: 'com.netflix.feign', name: 'feign-hystrix', version: '+'
+    compile group: 'com.netflix.feign', name: 'feign-core', version: '+'
+    compile group: 'com.netflix.feign', name: 'feign-slf4j', version: '+'
+    compile group: 'org.projectlombok', name: 'lombok', version: '+'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '+'
+    compile group: 'org.hsqldb', name: 'hsqldb', version: '2.3.3'
+    compile group: 'commons-collections', name: 'commons-collections', version: '+'
+    compile group: 'com.shop', name: 'audit-common', version:'+'
+    compile group: 'com.shop', name: 'author-common', version:'+'
+    compile group: 'org.modelmapper', name: 'modelmapper', version: '+'
+}

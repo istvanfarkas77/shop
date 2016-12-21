@@ -1,0 +1,72 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.2.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+//        classpath("io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+//apply plugin: 'io.spring.dependency-management'
+apply plugin: 'maven'
+
+jar {
+    baseName = 'library'
+    version = '1.1.0.RELEASE'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url 'https://repo.spring.io/libs-snapshot'
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().url)
+            pom.version = '1.1.0.RELEASE'
+            pom.artifactId = 'library'
+            pom.groupId = 'com.shop'
+        }
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR1'
+//        mavenBom 'org.springframework.cloud:spring-cloud-sleuth:1.1.0.RELEASE'
+    }
+}
+
+dependencies {
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version:'+'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version:'1.4.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.4.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version:'1.4.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.4.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'1.4.2.RELEASE'
+    compile group: 'org.hsqldb', name: 'hsqldb', version:'2.3.3'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter', version:'+'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka-server', version:'+'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-hystrix', version:'+'
+//    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth', version: '1.0.0.RELEASE'
+    compile group: 'org.springframework.kafka', name: 'spring-kafka', version:'+'
+	compile group: 'com.netflix.feign', name: 'feign-core', version:'+'
+	compile group: 'com.netflix.feign', name: 'feign-slf4j', version:'+'
+    compile group: 'org.projectlombok', name: 'lombok', version: '+'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version:'+'
+	compile group: 'commons-collections', name: 'commons-collections', version:'+'
+    compile group: 'com.shop', name: 'book-common', version:'+'
+    compile group: 'com.shop', name: 'author-common', version:'+'
+}

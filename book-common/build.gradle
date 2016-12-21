@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+jar {
+    baseName = 'book-common'
+    version = '1.1.0.RELEASE'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().url)
+            pom.version = '1.1.0.RELEASE'
+            pom.artifactId = 'book-common'
+            pom.groupId = 'com.shop'
+        }
+    }
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-web', version: '3.0.4.RELEASE'
+    compile group: 'org.projectlombok', name: 'lombok', version: '+'
+}
