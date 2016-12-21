@@ -1,3 +1,4 @@
 language: java
-before_script: cd ./book-common
-script: gradle check
+script:
+	- cd ./book-common
+	- gradle check
