@@ -1,5 +1,8 @@
 language: java
-before_script:
-	cd ./book
+jdk:
+  - oraclejdk8
 script:
-	gradle check
+  - cd ./book-common
+  - gradle check
+  - cd ../book
+  - gradle check
