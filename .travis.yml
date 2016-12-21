@@ -1,4 +1,4 @@
 language: java
 script:
-	- cd ./book-common
-	- gradle check
+- cd ./book-common
+- gradle check
