@@ -4,5 +4,7 @@ jdk:
 script:
   - cd ./book-common
   - gradle check
+  - gradle uploadArchives
   - cd ../book
   - gradle check
+  - gradle uploadArchives
