@@ -5,4 +5,4 @@ platform: linux
 #  - name: version
   
 run:
-  path: shop/book-common/gradlew
+  path: ./shop/book-common/gradlew
