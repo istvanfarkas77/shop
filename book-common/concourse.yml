@@ -1,8 +1,8 @@
 platform: linux
 
-inputs:
-  - name: concourse
-  - name: version
+#inputs:
+#  - name: concourse
+#  - name: version
   
 run:
   path: shop/book-common/gradlew
