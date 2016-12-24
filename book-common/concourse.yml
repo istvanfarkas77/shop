@@ -4,4 +4,9 @@ inputs:
 - name: shop
 
 run:
-  path: shop/book-common/gradlew
+  path: sh
+  args:
+  - -exc
+  - |
+    whoami
+    env
