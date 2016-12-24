@@ -1,5 +1,8 @@
 platform: linux
 
+image: 
+  type: docker-image
+    source: {repository: busybox}
 #inputs:
 #  - name: concourse
 #  - name: version
