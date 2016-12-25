@@ -4,7 +4,7 @@ image_resource:
   source: {repository: busybox}
   
 inputs:
-- name: book-common
+- name: shop
 
 run:
   path: ./book-common/build.sh
