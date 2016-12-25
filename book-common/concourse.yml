@@ -1,11 +1,6 @@
 platform: linux
-
-image: 
+image_resource: 
   type: docker-image
-    
-#inputs:
-#  - name: concourse
-#  - name: version
-  
+  source: {repository: busybox}
 run:
   path: ./shop/book-common/gradlew
