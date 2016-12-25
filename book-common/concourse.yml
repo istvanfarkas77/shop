@@ -3,4 +3,4 @@ image_resource:
   type: docker-image
   source: {repository: busybox}
 run:
-  path: ./book-common/build.sh
+  path: book-common/build.sh
