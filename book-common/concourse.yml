@@ -7,4 +7,4 @@ inputs:
 - name: resource-shop
 
 run:
-  path: ./build.sh
+  path: ls
