@@ -7,4 +7,5 @@ inputs:
 - name: resource-shop
 
 run:
-  path: ./resource-shop/book-common/build.sh
+  path: ls
+  args: [-la, resource-shop/book-common]
